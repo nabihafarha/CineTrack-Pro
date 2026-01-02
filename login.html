@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineTrack Pro - Login</title>
+    <link rel="stylesheet" href="Style/login.css"> </head>
+<body class="auth-body">
+    <div class="login-container">
+        <div class="login-box">
+            <h1>🎬 CineTrack <span>Pro</span></h1>
+            <p>Sign in to manage your watchlist</p>
+            
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="insert username.">
+            </div>
+            
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Minimal 6 karakter">
+                <div class="forgot-wrapper">
+                    <a href="#" id="forgot-link">Lupa Password?</a>
+                </div>
+            </div>
+            
+            <button id="login-btn">Start Exploring</button>
+
+            <div class="divider"><span>ATAU</span></div>
+            
+            <button class="google-btn">
+                <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google">
+                Sign in with Google
+            </button>
+
+            <div class="auth-footer">
+                <p>Belum punya akun? <a href="signup.html" id="toggle-link">Daftar di sini</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="script/login.js"></script> </body>
+</html>

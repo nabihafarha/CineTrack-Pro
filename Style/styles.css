@@ -1,0 +1,439 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --accent: #38bdf8;
+    --text-white: #f8fafc;
+}
+
+body {
+    margin: 0; font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color); color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}    
+
+main, .movie-grid, #movie-details-container {
+    flex: 1 0 auto;
+}
+
+.main-footer {
+    flex-shrink: 0;
+    margin-top: auto; 
+}
+/* --- NAVBAR --- */
+.navbar {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0.8rem 5%; 
+    background: var(--card-bg); 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logo b { color: var(--accent); }
+
+.search-box input {
+    padding: 10px 20px; 
+    border-radius: 20px; 
+    border: 1px solid #334155; 
+    width: 350px; 
+    background: var(--bg-color); 
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-box input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+/* Sisi Kanan Navbar */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* --- PROFILE & AUTH --- */
+.nav-auth { display: flex; align-items: center; }
+
+.nav-login-btn {
+    padding: 8px 20px;
+    background: var(--accent);
+    color: var(--bg-color);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.profile-icon {
+    width: 35px; height: 35px;
+    background: #334155;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    border: 2px solid var(--accent);
+    font-weight: bold;
+}
+
+/* --- HAMBURGER (MENU TOGGLE) --- */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px; height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* --- SIDEBAR (DARI KANAN) --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Sembunyi di kanan */
+    width: 280px;
+    height: 100%;
+    background: var(--card-bg);
+    z-index: 2000;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    padding: 30px 20px;
+}
+
+.sidebar.active {
+    right: 0; /* Muncul ke layar */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.sidebar-links { 
+    list-style: none; padding: 0; 
+}
+
+.sidebar-links li { 
+    margin-bottom: 25px; 
+}
+
+.sidebar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: flex; align-items: center; gap: 15px;
+}
+.sidebar-links a:hover { 
+    color: var(--accent); 
+}
+
+/* --- MODAL LOGOUT --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: none; 
+    justify-content: center; align-items: center;
+    z-index: 3000;
+}
+
+.modal-box {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    width: 340px;
+    border: 1px solid #334155;
+    animation: modalPop 0.3s ease-out;
+}
+
+/* Efek pas kursor di atas kartu (HOVER) */
+.movie-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+/* Efek halus buat gambarnya juga */
+.movie-card img {
+    width: 100%;
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+.movie-card:hover img {
+    filter: brightness(1.1);
+}
+
+.close-btn { 
+    font-size: 2rem; 
+    cursor: pointer; 
+    color: #94a3b8; 
+}
+
+.sidebar-links { 
+    list-style: none; 
+    padding: 0; 
+}
+
+.sidebar-links li { 
+    margin-bottom: 20px; 
+}
+
+.sidebar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+}
+.sidebar-links a:hover { 
+    color: #38bdf8;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    z-index: 1500;
+}
+.overlay.active { 
+    display: block; 
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-icon { 
+    font-size: 3rem; 
+    margin-bottom: 10px; 
+}
+
+.modal-box h2 { 
+    margin-bottom: 10px; 
+    color: white; 
+}
+
+.modal-box p { 
+    color: #94a3b8; 
+    font-size: 0.9rem; 
+    margin-bottom: 25px; 
+}
+
+/* Tombol-tombol di Modal */
+.modal-buttons { 
+    display: flex; 
+    gap: 10px; 
+}
+
+.btn-cancel {
+    flex: 1; 
+    padding: 12px; 
+    border-radius: 10px; 
+    border: none;
+    background: #334155; 
+    color: white; 
+    cursor: pointer; 
+    font-weight: bold;
+}
+
+.btn-confirm {
+    flex: 1; 
+    padding: 12px; 
+    border-radius: 10px; 
+    border: none;
+    background: #ff4d4d; 
+    color: white; 
+    cursor: pointer; 
+    font-weight: bold;
+}
+
+.btn-confirm:hover { 
+    background: #ff3333; 
+}
+
+.search-box input {
+    padding: 10px 20px; 
+    border-radius: 20px; 
+    border: none; 
+    width: 300px; 
+    background: var(--bg-color); 
+    color: white;
+}
+
+.mood-section { 
+    text-align: center; 
+    padding: 2rem; 
+}
+
+.mood-btn {
+    padding: 10px 20px; 
+    margin: 5px; 
+    border-radius: 20px; 
+    border: 1px solid var(--accent);
+    background: transparent; 
+    color: white; 
+    cursor: pointer; 
+    transition: 0.3s;
+}
+.mood-btn:hover { 
+    background: var(--accent); 
+    color: var(--bg-color); }
+
+.movie-grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px; 
+    padding: 20px 5%;
+}
+
+/* Styling Info Film */
+.movie-info {
+    display: flex;
+    justify-content: space-between; /* Judul di kiri, Rating di kanan */
+    align-items: flex-start;
+    padding: 15px;
+    background: var(--card-bg);
+    gap: 10px;
+}
+
+/* Bagian Judul dan Tahun */
+.title-section {
+    display: flex;
+    flex-direction: column; /* Ini yang bikin tahun di bawah judul */
+    gap: 4px;
+    flex: 1; /* Biar judul dapet space lebih luas */
+}
+
+.movie-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+    line-height: 1.2;
+}
+
+.year {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+/* Badge Rating */
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: #fbbf24;
+    font-weight: bold;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Biar rating nggak turun ke bawah */
+}
+
+/* Styling dasar kartu film */
+.movie-card {
+    position: relative;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.3s ease;
+    z-index: 1;
+}
+
+.main-footer {
+    background-color: #0f172a; /* Slate 900 */
+    border-top: 1px solid #1e293b;
+    color: #94a3b8;
+    padding: 50px 10% 20px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 40px;
+}
+
+.footer-section h4 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #38bdf8; /* Accent color */
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 1.5rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #1e293b;
+    padding-top: 20px;
+    font-size: 0.8rem;
+}
+
+/* Biar rapi di HP */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}

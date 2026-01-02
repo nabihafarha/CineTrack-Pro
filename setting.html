@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CineTrack Pro</title>
+    <link rel="stylesheet" href="Style/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer">
+        🎬 CineTrack <b>Pro</b>
+    </div>
+    
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Cari film favoritmu...">
+    </div>
+
+    <div class="nav-right">
+        <div id="nav-auth" class="nav-auth"></div>
+        
+        <div class="menu-toggle" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h3>Menu</h3>
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+    </div>
+    <ul class="sidebar-links">
+        <li><a href="watchlist.html"><i class="icon">🔖</i> My Watchlist</a></li>
+        <li><a href="setting.html"><i class="icon">⚙️</i> Settings</a></li>
+        <hr>
+        <li><a href="#" onclick="logout()" style="color: #ff4d4d;"><i class="icon">🚪</i> Logout</a></li>
+    </ul>
+</div>
+
+<div id="logout-modal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-icon">👋</div>
+        <h2>Mau pamit sekarang?</h2>
+        <p>Semua daftar watchlist lo tetep aman kok di sini.</p>
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeLogoutModal()">Batal</button>
+            <button class="btn-confirm" onclick="confirmLogout()">Ya, Logout</button>
+        </div>
+    </div>
+</div>
+
+<main class="settings-container" style="padding: 100px 10%; max-width: 800px; margin: 0 auto;">
+    <h2 style="border-left: 5px solid var(--accent); padding-left: 15px; margin-bottom: 30px;">⚙️ Account Settings</h2>
+
+    <section class="settings-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <h3 style="margin-top: 0; color: var(--accent);">👤 Profile Personalization</h3>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Ganti nama tampilan lo yang muncul di navbar.</p>
+        
+        <div class="setting-item" style="margin: 20px 0;">
+            <label style="display: block; margin-bottom: 8px;">Display Name</label>
+            <input type="text" id="new-username" placeholder="Nama baru lo..." 
+                   style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: var(--bg-color); color: white; outline: none;">
+        </div>
+        <button onclick="updateProfile()" class="nav-login-btn" style="border: none; cursor: pointer; width: 100%;">Save Changes</button>
+    </section>
+
+    <section class="settings-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid #ef444455;">
+        <h3 style="margin-top: 0; color: #ef4444;">⚠️ Danger Zone</h3>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Hapus semua data watchlist lo secara permanen. Akun login tetep ada, tapi list film ilang semua.</p>
+        
+        <button onclick="resetWatchlist()" style="background: transparent; color: #ef4444; border: 1px solid #ef4444; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 15px; transition: 0.3s;" 
+                onmouseover="this.style.background='#ef4444'; this.style.color='white'" 
+                onmouseout="this.style.background='transparent'; this.style.color='#ef4444'">
+            Reset Watchlist Data
+        </button>
+    </section>
+    <script src="script/settings.js"></script>
+</main>

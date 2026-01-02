@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CineTrack Pro</title>
+    <link rel="stylesheet" href="Style/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+    <div class="logo">🎬 CineTrack <b>Pro</b></div>
+    
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Cari film favoritmu...">
+    </div>
+
+    <div class="nav-right">
+        <div id="nav-auth" class="nav-auth"></div>
+        
+        <div class="menu-toggle" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h3>Menu</h3>
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+    </div>
+    <ul class="sidebar-links">
+        <li><a href="watchlist.html"><i class="icon">🔖</i> My Watchlist</a></li>
+        <li><a href="setting.html"><i class="icon">⚙️</i> Settings</a></li>
+        <hr>
+        <li><a href="#" onclick="logout()" style="color: #ff4d4d;"><i class="icon">🚪</i> Logout</a></li>
+    </ul>
+</div>
+
+<div id="logout-modal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-icon">👋</div>
+        <h2>Mau pamit sekarang?</h2>
+        <p>Semua daftar watchlist lo tetep aman kok di sini.</p>
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeLogoutModal()">Batal</button>
+            <button class="btn-confirm" onclick="confirmLogout()">Ya, Logout</button>
+        </div>
+    </div>
+</div>
+
+<div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <div class="mood-section">
+        <h2>Mau nonton apa hari ini?</h2>
+        <button class="mood-btn" onclick="filterByMood('healing')">🌿 Healing</button>
+        <button class="mood-btn" onclick="filterByMood('adrenaline')">🔥 Adrenaline</button>
+        <button class="mood-btn" onclick="filterByMood('cry')">😭 Need a Cry</button>
+        <button class="mood-btn" onclick="filterByMood('mindblown')">🧠 Mind Blown</button>
+    </div>
+
+    <main id="movie-grid" class="movie-grid"></main>
+
+    <footer class="main-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="logo">🎬 CineTrack <b>Pro</b></div>
+            <p>Tracking your cinematic journey since 2024. All movie data provided by TMDB API.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Explore</a></li>
+                <li><a href="watchlist.html">My Watchlist</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#">🌐</a>
+                <a href="#">📸</a>
+                <a href="#">🐦</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 CineTrack Pro. Created with ❤️ for Movie Lovers.</p>
+    </div>
+</footer>
+
+    <script src="script/scripts.js"></script>
+</body>
+</html>
